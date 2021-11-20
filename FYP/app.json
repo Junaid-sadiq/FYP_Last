@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "name": "Final Year Project",
+    "slug": "fyp",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./app/assets/splash.png",
+    "splash": {
+      "image": "./app/assets/Realtor.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#90A9EB"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    }
+  }
+}

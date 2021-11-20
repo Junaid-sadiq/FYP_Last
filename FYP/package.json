@@ -1,0 +1,46 @@
+{
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "eject": "expo eject"
+  },
+  "dependencies": {
+    "@react-native-community/masked-view": "0.1.6",
+    "@react-navigation/bottom-tabs": "^6.0.9",
+    "@react-navigation/native": "^6.0.6",
+    "@react-navigation/stack": "^6.0.11",
+    "apisauce": "^1.1.1",
+    "expo": "^43.0.0",
+    "expo-google-app-auth": "~9.0.0",
+    "expo-image-picker": "~11.0.3",
+    "expo-location": "~13.0.4",
+    "firebase": "^8.2.3",
+    "formik": "^2.1.4",
+    "moment": "^2.27.0",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "react-native": "0.64.2",
+    "react-native-calendars": "^1.300.0",
+    "react-native-gesture-handler": "~1.10.2",
+    "react-native-keyboard-aware-scroll-view": "^0.9.5",
+    "react-native-maps": "0.28.0",
+    "react-native-reanimated": "~2.2.0",
+    "react-native-safe-area-context": "3.3.2",
+    "react-native-screens": "~3.8.0",
+    "react-native-web": "0.17.1",
+    "react-redux": "^7.2.1",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0",
+    "socket.io-client": "^2.3.0",
+    "styled-components": "^5.1.1",
+    "yup": "^0.29.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "babel-preset-expo": "8.5.1"
+  },
+  "private": true
+}
