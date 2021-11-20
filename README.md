@@ -1,5 +1,5 @@
 
-# Airbnb App Clone in React Native
+# real estate app in React Native
 
 This is my first React Native project done with expo.
 [Demo Video](https://youtu.be/RHxPceOgMB0)
