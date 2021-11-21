@@ -1,6 +1,5 @@
-import Firebase from 'firebase/app';
-import 'firebase/firestore';
-import 'firebase/auth';
+import firebase from 'firebase';
+
 import { seedDatabase1 } from './app/data/seed/detailseed';
 const firebaseConfig = {
   apiKey: "AIzaSyBSjvm9f57RNi8wa2cS7ZNNo74_nrebo-k",
@@ -12,11 +11,13 @@ const firebaseConfig = {
   measurementId: "G-395LML6LF7"
 };
 //initialize App
-const firebase = Firebase.initializeApp(firebaseConfig);
-//Populate the Database with Dummy data
-/* seedDatabase1(firebase); */
-const db = Firebase.firestore();
+const firebaseApp = firebase.initializeApp(firebaseConfig);
+const db = firebaseApp.firestore();
 const auth = firebase.auth();
+const storage = firebase.storage();
 
-export { firebase, db, auth };
+const provider = new firebase.auth.GoogleAuthProvider();
+export { db, auth, storage, provider }
 
+
+/* seedDatabase1(firebase); */

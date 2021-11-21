@@ -3,13 +3,19 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 //import screens
 
-import Message from "../screens/Messages";
+import Messages from "../screens/Messages";
 import MessageDetail from "../screens/MessageDetail";
+import AddChat from '../screens/AddChat';
 
 //import styles, icons
 import styled from "styled-components";
 
 const Stack = createStackNavigator();
+const globalScreenOptions = {
+  headerStyle: { backgroundColor: "#3B71FE" },
+  headerTitleStyle: { color: "white" },
+  headerTintColor: "white",
+};
 
 const MessageStack = ({ navigation, route }) => {
   if (route.state) {
@@ -19,16 +25,21 @@ const MessageStack = ({ navigation, route }) => {
   }
 
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={globalScreenOptions}>
       <Stack.Screen
         name="Message"
-        component={Message}
-        options={{ headerShown: false }}
+        component={Messages}
+        /* options={{ headerShown: false }} */
+      />
+       <Stack.Screen
+        name="AddChat"
+        component={AddChat}
+        /* options={{ headerShown: false }} */
       />
       <Stack.Screen
         name="MessageDetail"
         component={MessageDetail}
-        options={({ route }) => ({ title: route.params.fromUser })}
+        /* options={({ route }) => ({ title: route.params.fromUser })} */
       />
     </Stack.Navigator>
   );

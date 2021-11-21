@@ -135,11 +135,11 @@ const Home = (props) => {
           >
             <InfoContainer>
               <Typography.Jumbo color={colors.darkgray}>
-            Relax, sleep
+            Find a destination
               </Typography.Jumbo >
-              <Typography.Jumbo  color={colors.darkgray}>
-                ,dream
-              </Typography.Jumbo>
+             {/*  <Typography.Jumbo  color={colors.darkgray}>
+                ,Near
+              </Typography.Jumbo> */}
               <TouchableOpacity onPress={() => setSearch(true)}>
                     <Btn >Start your search</Btn>
                   </TouchableOpacity>
@@ -239,7 +239,7 @@ const ImageContainer = styled.View`
 const InfoContainer = styled.View`
   justify-content: center;
   align-items: center;
-  margin-top: 100px;
+  margin-top: 120px;
   font-weight: bold;
   font-size: 72px;
 `;

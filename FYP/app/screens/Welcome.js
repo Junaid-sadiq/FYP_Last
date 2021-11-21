@@ -7,94 +7,10 @@ import * as Button from "../components/Button";
 import styled from "styled-components";
 import colors from "../config/colors";
 import * as Typography from "../config/Typography";
-import * as Google from "expo-google-app-auth";
 
-import { auth } from "../../firebase";
-import firebase from "firebase";
+import { useAuth } from "../navigation/AuthProvider";
 const WelcomeScreen = ({ navigation }) => {
-  function isUserEqual(googleUser, firebaseUser) {
-    if (firebaseUser) {
-      var providerData = firebaseUser.providerData;
-      for (var i = 0; i < providerData.length; i++) {
-        if (
-          providerData[i].providerId ===
-            firebase.auth.GoogleAuthProvider.PROVIDER_ID &&
-          providerData[i].uid === googleUser.getBasicProfile().getId()
-        ) {
-          // We don't need to reauth the Firebase connection.
-          return true;
-        }
-      }
-    }
-    return false;
-  }
-
-  function onSignIn(googleUser) {
-    console.log("Google Auth Response", googleUser);
-    // We need to register an Observer on Firebase Auth to make sure auth is initialized.
-    var unsubscribe = firebase.auth().onAuthStateChanged((firebaseUser) => {
-      unsubscribe();
-      // Check if we are already signed-in Firebase with the correct user.
-      if (!isUserEqual(googleUser, firebaseUser)) {
-        // Build Firebase credential with the Google ID token.
-        var credential = firebase.auth.GoogleAuthProvider.credential(
-          googleUser.idToken,
-          googleUser.accessToken
-        );
-
-        // Sign in with credential from the Google user.
-        firebase
-          .auth()
-          .signInWithCredential(credential)
-          .then(function () {
-            console.log("user signed in");
-          })
-          .catch((error) => {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            // The email of the user's account used.
-            var email = error.email;
-            // The firebase.auth.AuthCredential type that was used.
-            var credential = error.credential;
-            // ...
-          });
-      } else {
-        console.log("User already signed-in Firebase.");
-      }
-    });
-  }
-  useEffect(() => {
-    checkIfLoggedIn();
-  }, []);
-  const checkIfLoggedIn = () => {
-    auth.onAuthStateChanged(function (user) {
-      if (user) {
-        console.log("user added");
-      } else {
-        console.log("user not added");
-      }
-    });
-  };
-
-  async function signInWithGoogleAsync() {
-    try {
-      const result = await Google.logInAsync({
-        androidClientId:
-          "206929677529-e8d5pnnrusledmej69j8uu1r1n2scpm4.apps.googleusercontent.com",
-        scopes: ["profile", "email"],
-      });
-
-      if (result.type === "success") {
-        onSignIn(result);
-        return result.accessToken;
-      } else {
-        return { cancelled: true };
-      }
-    } catch (e) {
-      return { error: true };
-    }
-  }
+  const { signInWithGoogle } = useAuth();
   return (
     <Container>
       <Main>
@@ -108,7 +24,7 @@ const WelcomeScreen = ({ navigation }) => {
               label="Continue with Google"
               color={colors.red}
               labelcolor="white"
-              onPress={() => signInWithGoogleAsync()}
+              onPress={() => signInWithGoogle()}
             />
           </Btn>
           <Btn>

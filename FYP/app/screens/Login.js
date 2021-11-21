@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Alert, Text } from "react-native";
+import {  Text } from "react-native";
 import * as Yup from "yup";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 //import components
@@ -10,31 +10,17 @@ import SubmitBtn from "../components/forms/SubmitBtn";
 //import styles and assets
 import styled from "styled-components";
 import * as Typography from "../config/Typography";
+
 //auth
-import { auth } from "../../firebase";
+import { useAuth } from "../navigation/AuthProvider";
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
   password: Yup.string().required().min(4).label("Password"),
 });
 
-const Login = ({ navigation }) => {
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
-        navigation.navigate("HomeStack");
-      }
-    });
-    return unsubscribe;
-  }, []);
-  const login = (email, password) => {
-    auth
-      .signInWithEmailAndPassword(email, password)
-      .then((userCredentials) => {
-        const user = userCredentials.user;
-        Alert.alert("Succesfully logged in with: ", user.email);
-      })
-      .catch((error) => alert(error.message));
-  };
+
+const Login = () => {
+  const { login } = useAuth();
   return (
     <Container>
        <KeyboardAwareScrollView enableOnAndroid={true}
@@ -75,7 +61,7 @@ const Login = ({ navigation }) => {
       </KeyboardAwareScrollView>
     </Container>
   );
-};
+}; 
 
 const Container = styled.View`
   flex: 1;

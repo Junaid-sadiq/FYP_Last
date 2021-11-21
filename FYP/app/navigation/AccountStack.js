@@ -3,6 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 //import screens
 import Accounts from "../screens/Accounts";
+import EditProfile from "../screens/EditProfile";
 import Hosting from "../screens/Hosting";
 import HostingStep2 from "../screens/HostingStep2";
 import HostingStep3 from "../screens/HostingStep3";
@@ -69,6 +70,19 @@ const AccountStack = ({ navigation, route }) => {
       <Stack.Screen
         name="HostingStep4"
         component={HostingStep4}
+        options={{
+          title: false,
+          headerBackTitleVisible: false,
+          headerBackImage: () => (
+            <IconWrapper>
+              <EvilIcons name="chevron-left" size={30} />
+            </IconWrapper>
+          ),
+        }}
+      />
+       <Stack.Screen
+        name="EditProfile"
+        component={EditProfile}
         options={{
           title: false,
           headerBackTitleVisible: false,

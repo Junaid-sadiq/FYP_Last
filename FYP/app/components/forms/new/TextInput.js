@@ -17,14 +17,14 @@ export const TextInput = ({
   return (
     <View
       style={{
-        backgroundColor: Colors.white,
+        backgroundColor: colors.lightgray,
         borderRadius: 8,
         flexDirection: 'row',
         padding: 12,
         marginVertical: 12,
         width,
         borderWidth: 1,
-        borderColor: Colors.mediumGray
+        borderColor: colors.mediumGray
       }}
     >
       {leftIconName ? (
@@ -40,7 +40,7 @@ export const TextInput = ({
           flex: 1,
           width: '100%',
           fontSize: 18,
-          color: Colors.black
+          color: colors.darkgray
         }}
         placeholderTextColor={colors.lightgray}
         {...otherProps}

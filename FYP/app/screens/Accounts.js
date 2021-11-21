@@ -16,11 +16,19 @@ import colors from "../config/colors";
 import { Cap } from "../config/Typography";
 //auth
 import { auth } from "../../firebase";
+import { useAuth } from "../navigation/AuthProvider";
 const AccountItems = [
-  {
-    title: "dog management",
+   {
+    title: "hosting",
     data: [
-      { title: "Privacy", icon: "user", screen: "Hosting" },
+      { title: "Switch to hosted mode", icon: "refresh", screen: "Hosting" },
+      { title: "Register your accommodation", icon: "plus", screen: "Hosting" },
+    ],
+  },
+  {
+    title: "Account management",
+    data: [
+      { title: "Edit Profile", icon: "user", screen: "EditProfile" },
       { title: "notice", icon: "bell", screen: "Hosting" },
       {
         title: "Payment and payment receipt",
@@ -29,29 +37,16 @@ const AccountItems = [
       },
     ],
   },
-  {
-    title: "hosting",
-    data: [
-      { title: "Switch to hosted mode", icon: "refresh", screen: "Hosting" },
-      { title: "Register your accommodation", icon: "plus", screen: "Hosting" },
-    ],
-  },
+ 
   {
     title: "Help",
-    data: [{ title: "How to use Airbnb", icon: "question", screen: "Hosting" }],
+    data: [{ title: "How to use Realtor", icon: "question", screen: "Hosting" }],
   },
 ];
 
-const Accounts = ({ navigation }) => {
-  const handleSignOut = () => {
-    auth
-      .signOut()
-      .then(() => {
-        navigation.navigate("Login");
-      })
-      .catch((error) => alert(error.message));
-  };
-
+const Accounts = ({navigation}) => {
+ const {signOut} = useAuth()
+ let uri =  auth.currentUser?.photoURL
   return (
     <Container>
       <SectionList
@@ -60,7 +55,8 @@ const Accounts = ({ navigation }) => {
           <List.UserList
             title={auth.currentUser?.email}
             subtitle="View Profile"
-            // image={require("../assets/profile.jpg")}
+            image={ uri }
+
           />
         }
         sections={AccountItems}
@@ -76,13 +72,13 @@ const Accounts = ({ navigation }) => {
             title={item.title}
             icon={item.icon}
             iconcolor={colors.darkgray}
-            // onPress={() => console.log("selected", item)}
-            // onPress={() => navigation.navigate(`${item.screen}`)}
+            onPress={() => console.log("selected", item)}
+             onPress={() => navigation.navigate(`${item.screen}`)}
           />
         )}
         ItemSeparatorComponent={() => <HLine />}
         ListFooterComponent={() => (
-          <TouchableOpacity onPress={handleSignOut}>
+          <TouchableOpacity onPress={signOut}>
             <Text>Sign Out</Text>
           </TouchableOpacity>
         )}

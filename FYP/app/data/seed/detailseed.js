@@ -189,7 +189,7 @@ export function seedDatabase1(firebase) {
       ],
     },
   ]
-}
-/*  for (let k = 0; k < AvailAmenities.length; k++) {
+/*    for (let k = 0; k < AvailAmenities.length; k++) {
     firebase.firestore().collection('availAmenities').add(AvailAmenities[k]);
   } */
+}

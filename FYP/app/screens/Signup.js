@@ -14,7 +14,8 @@ import colors from "../config/colors";
 import * as Typography from "../config/Typography";
 import { Formik, validateYupSchema } from "formik";
 import { useFormik } from "formik";
-import { auth, db } from "../../firebase";
+import { auth, db, firebase } from "../../firebase";
+import { useAuth } from "../navigation/AuthProvider";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().label("Name"),
@@ -23,38 +24,8 @@ const validationSchema = Yup.object().shape({
 });
 
 
-const Signup = ({ navigation }) => {
-  /* useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
-        navigation.navigate("HomeStack");
-      }
-    });
-    return unsubscribe;
-  }, []); */
-  const Register = (email, password) => {
-    auth
-      .createUserWithEmailAndPassword(email, password)
-      .then((userCredentials) => {
-        const user = userCredentials.user;
-        
-          db
-          .collection('users')
-                  .doc(auth().currentUser.uid)
-                  .set({
-                    firstName: '',
-                    lastname: '',
-                    email: auth().currentUser.email,
-                    createdAt: firestore.Timestamp.fromDate(new Date()),
-                    userImg: null,
-                  })
-
-        console.log(user.email);
-        Alert.alert('Successfully Signed Up as ', user.email)
-      })
-      .catch((error) => alert(error.message));
-  };
-
+const Signup = () => {
+  const { Register } = useAuth();
   return (
     <Container>
      <KeyboardAwareScrollView enableOnAndroid={true}
@@ -66,41 +37,51 @@ const Signup = ({ navigation }) => {
           </Header>
           <AppForm
             initialValues={{ name: "", email: "", password: "" }}
-            onSubmit={(values) => Register(values.email, values.password)}
+            onSubmit={(values) => Register(values)}
             validationSchema={validationSchema}
-          >
-            <Input>
-              <Text>Name</Text>
-              <TextInput.Default
-                name="name"
-                autoCapitalize="none"
-                autoCorrect={false}
-                keyboardType="default"
-                clearButtonMode="always"
-                textContentType="name"
-              />
-            </Input>
-            <Input>
-              <Text>Email</Text>
-              <TextInput.Default
-                name="email"
-                autoCapitalize="none"
-                autoCorrect={false}
-                keyboardType="email-address"
-                clearButtonMode="always"
-                textContentType="emailAddress"
-              />
-            </Input>
-            <Input>
-              <Text>Password</Text>
-              <TextInput.Pw
-                name="password"
-                autoCapitalize="none"
-                autoCorrect={false}
-                textContentType="password"
-              />
-            </Input>
-            <SubmitBtn title="Signup" />
+          > {({
+            values,
+            touched,
+            errors,
+            handleChange,
+            handleSubmit,
+            handleBlur
+          }) => (
+            <>
+              <Input>
+                <Text>Name</Text>
+                <TextInput.Default
+                  name="name"
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  keyboardType="default"
+                  clearButtonMode="always"
+                  textContentType="name"
+                />
+              </Input>
+              <Input>
+                <Text>Email</Text>
+                <TextInput.Default
+                  name="email"
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  keyboardType="email-address"
+                  clearButtonMode="always"
+                  textContentType="emailAddress"
+                />
+              </Input>
+              <Input>
+                <Text>Password</Text>
+                <TextInput.Pw
+                  name="password"
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  textContentType="password"
+                />
+              </Input>
+              <SubmitBtn title="Signup" />
+            </>
+          )}
           </AppForm>
         </Main>
       </KeyboardAwareScrollView>
