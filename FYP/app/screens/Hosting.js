@@ -24,7 +24,7 @@ import {
 const categories = [
   { label: "Apartment", value: 1 },
   { label: "House", value: 2 },
-  { label: "outbuilding", value: 3 },
+  { label: "Rooms", value: 3 },
   { label: "boutique hotel", value: 4 },
 ];
 

@@ -4,6 +4,7 @@ import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 
 //import components
 import * as List from "../components/List";
+import { auth } from "../../firebase";
 
 //import styles and assets
 import styled from "styled-components";
@@ -11,7 +12,8 @@ import * as Typography from "../config/Typography";
 import colors from "../config/colors";
 
 //import data
-
+let uri = auth.currentUser?.photoURL;
+let email = auth.currentUser?.email;
 const TripDetails = ({ route }) => {
   const trip = route.params;
 
@@ -62,9 +64,9 @@ const TripDetails = ({ route }) => {
         <HLine />
         <Host>
           <List.UserList
-            title="Hosted by Jinah Lee"
+            title={"Hosted by: ", `${email}`}
             subtitle="Member since: December 2018"
-            // image={require("../assets/profile.jpg")}
+            image={uri}
           ></List.UserList>
         </Host>
         <HLine />
