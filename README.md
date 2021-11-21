@@ -44,5 +44,4 @@
 
 **Message**
 
-- Creating socket connection
-- Sending and receiving messages
+- Sending and receiving messages with firestore
