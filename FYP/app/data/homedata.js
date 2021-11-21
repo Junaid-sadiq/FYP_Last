@@ -3,7 +3,7 @@ export const homedata = [
     title: "Homes",
     subtitle: "Relax in a nearby destination just a short drive away",
     image:
-      "https://images.unsplash.com/photo-1501183638710-841dd1904471?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+      "https://images.unsplash.com/photo-1600585154084-4e5fe7c39198?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8aG9tZSUyMGRlc2lnbnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60",
   },
   {
     title: "Apartments",
@@ -15,9 +15,9 @@ export const homedata = [
   {
     title: "online experience",
     subtitle:
-      "Experience the extraordinary world presented by hosts from around the world",
+      "Experience the extraordinary world presented by hosts from around Pakistan",
     image:
-      "https://a0.muscache.com/im/pictures/eb9c7c6a-ee33-414a-b1ba-14e8860d59b3.jpg",
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aG9tZSUyMGRlc2lnbnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60",
   },
 ];
 

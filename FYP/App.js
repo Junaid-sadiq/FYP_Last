@@ -12,6 +12,7 @@ export default function App() {
   return (
     <Common>
       <Provider store={store}>
+
         <PRoviders/>
       </Provider>
     </Common>

@@ -223,7 +223,7 @@ const Btn = styled.Text`
     padding: 10px;
     font-weight: bold;
     font-size: 16;
-    margin-top: 120px;
+    margin-top: 190px;
 `;
 
 const CancelBtn = styled.Text`
@@ -239,7 +239,7 @@ const ImageContainer = styled.View`
 const InfoContainer = styled.View`
   justify-content: center;
   align-items: center;
-  margin-top: 120px;
+  margin-top: 80px;
   font-weight: bold;
   font-size: 72px;
 `;
